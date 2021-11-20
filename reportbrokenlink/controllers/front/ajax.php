@@ -4,7 +4,7 @@
  *
  *    Module URI: Please contact with info@megventure.com
  *    Description: This adds a button to the product pages for the visitors to report broken links.
- *    Version: 3.1.0
+ *    Version: 3.2.0
  *
  *  @author    MEG Venture <info@megventure.com>
  *  @copyright 2007-2021 MEG Venture
@@ -38,6 +38,7 @@ class ReportBrokenLinkAjaxModuleFrontController extends ModuleFrontController
             $report_mail = '';
             $id_product = null;
             $visitoremail = '';
+            $report1 = $report2 = $report3 = $report4 = $report5 = $report6 = $report7 = '';
             foreach ($report_datas as $entry) {
                 if ($entry->key == 'virtual_product_name') {
                     $report_name = $entry->value;

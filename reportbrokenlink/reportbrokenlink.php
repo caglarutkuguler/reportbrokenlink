@@ -4,7 +4,7 @@
  *
  *    Module URI: Please contact with info@megventure.com
  *    Description: This adds a button to the product pages for the visitors to report broken links.
- *    Version: 3.1.0
+ *    Version: 3.2.0
  *
  *  @author    MEG Venture <info@megventure.com>
  *  @copyright 2007-2021 MEG Venture
@@ -30,7 +30,7 @@ class ReportBrokenLink extends Module
     public function __construct($dont_translate = false)
     {
         $this->name = 'reportbrokenlink';
-        $this->version = '3.1.0';
+        $this->version = '3.2.0';
         $this->author = 'MEG Venture';
         $this->tab = 'front_office_features';
         $this->need_instance = 0;
@@ -73,6 +73,7 @@ class ReportBrokenLink extends Module
             'rpl_secure_key' => $this->secure_key,
             'virtual' => $product->is_virtual,
             'rpl_mail' => Configuration::get('PS_SHOP_EMAIL'),
+            'base_dir' => __PS_BASE_URI__,
         ));
 
         return $this->display(__FILE__, 'views/templates/front/reportbrokenlink-extra.tpl');
