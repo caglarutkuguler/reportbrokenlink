@@ -15,7 +15,7 @@
 *}
 
 <link rel="stylesheet" type="text/css" href="{$module_dir|escape:'htmlall':'UTF-8'}views/css/reportbrokenlink.css"/>
-<button type="button" class="btn btn-secondary btn-sm" id="report_link_button" data-toggle="modal"  data-target="#report_link_form"><i class="material-icons my-float">link_off</i> {l s='Report Broken Links' mod='reportbrokenlink'}</button>
+<button type="button" class="btn btn-outline-warning" id="report_link_button" data-toggle="modal"  data-target="#report_link_form"><i class="material-icons">link_off</i> {l s='Report Broken Links' mod='reportbrokenlink'}</button>
 
 <div
   class="modal fade"
