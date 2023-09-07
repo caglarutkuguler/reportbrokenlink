@@ -4,10 +4,10 @@
  *
  *    Module URI: Please contact with info@megventure.com
  *    Description: This adds a button to the product pages for the visitors to report broken links.
- *    Version: 3.2.0
+ *    Version: 3.2.1
  *
  *  @author    MEG Venture <info@megventure.com>
- *  @copyright 2007-2021 MEG Venture
+ *  @copyright 2007-2023 MEG Venture
  *  @license   For Prestashop--> http://opensource.org/licenses/osl-3.2.php  Open Software License (OSL 3.2)
  *
  *    This program is not a free software: you can't redistribute it and/or modify
@@ -30,7 +30,7 @@ class ReportBrokenLink extends Module
     public function __construct($dont_translate = false)
     {
         $this->name = 'reportbrokenlink';
-        $this->version = '3.2.0';
+        $this->version = '3.2.1';
         $this->author = 'MEG Venture';
         $this->tab = 'front_office_features';
         $this->need_instance = 0;

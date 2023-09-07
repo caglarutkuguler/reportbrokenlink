@@ -4,10 +4,10 @@
  *
  *    Module URI: Please contact with info@megventure.com
  *    Description: This adds a button to the product pages for the visitors to report broken links.
- *    Version: 3.2.0
+ *    Version: 3.2.1
  *
  *  @author    MEG Venture <info@megventure.com>
- *  @copyright 2007-2021 MEG Venture
+ *  @copyright 2007-2023 MEG Venture
  *  @license   For Prestashop--> http://opensource.org/licenses/osl-3.2.php  Open Software License (OSL 3.2)
  *
  *    This program is not a free software: you can't redistribute it and/or modify
@@ -33,7 +33,7 @@ class ReportBrokenLinkAjaxModuleFrontController extends ModuleFrontController
     {
         $ReportBrokenLink = new ReportBrokenLink();
         if (Tools::getValue('action') == 'ReportLink' && Tools::getValue('secure_key') == $ReportBrokenLink->secure_key) {
-            $report_datas = Tools::jsonDecode(Tools::getValue('report'));
+            $report_datas = json_decode(Tools::getValue('report'));
             $report_name = '';
             $report_mail = '';
             $id_product = null;
@@ -107,5 +107,21 @@ class ReportBrokenLinkAjaxModuleFrontController extends ModuleFrontController
         }
 
         return true;
+    }
+    /**
+     * @deprecated Deprecated since 1.7.0
+     * Use json_decode instead
+     * jsonDecode convert json string to php array / object
+     *
+     * @param string $data
+     * @param bool $assoc (since 1.4.2.4) if true, convert to associative array
+     * @param int $depth
+     * @param int $options
+     *
+     * @return array
+     */
+    public static function jsonDecode($data, $assoc = false, $depth = 512, $options = 0)
+    {
+        return json_decode($data, $assoc, $depth, $options);
     }
 }
