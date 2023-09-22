@@ -4,7 +4,7 @@
  *
  *    Module URI: Please contact with info@megventure.com
  *    Description: This adds a button to the product pages for the visitors to report broken links.
- *    Version: 3.2.1
+ *    Version: 3.2.2
  *
  *  @author    MEG Venture <info@megventure.com>
  *  @copyright 2007-2023 MEG Venture

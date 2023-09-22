@@ -2,7 +2,7 @@
 *	Module Name: Report Broken Link
 *	Module URI: Please contact with info@megventure.com
 *	Description: This adds a button to the product pages for the visitors to report broken links.
-*	Version: 3.2.1
+*	Version: 3.2.2
 *	Author: MEG Venture
 *
 *	Copyright 2012, www.megventure.com (info@megventure.com)
