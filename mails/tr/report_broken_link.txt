@@ -1,0 +1,21 @@
+Bir ziyaretçi ürün sayfasında sorun bildirdi
+============================================
+
+{report_date}
+
+Ürün          : {product}
+                {product_link}
+Sorun türü    : {report_type}
+Bildiren      : {reporter}
+Yanıt adresi  : {reporter_email}
+
+Ziyaretçinin mesajı
+-------------------
+
+{message}
+
+Yönetim panelinde incele:
+{admin_link}
+
+--
+{shop_name} - {shop_url}

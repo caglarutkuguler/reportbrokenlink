@@ -1,0 +1,20 @@
+Hello {reporter},
+
+A little while ago you told us something was wrong on our {product} page.
+Thank you - we have looked into it.
+
+Our reply
+---------
+
+{admin_response}
+
+What you reported
+-----------------
+
+{message}
+
+Reports like yours are genuinely useful - they catch things we would
+otherwise miss. Thank you for taking the time.
+
+--
+{shop_name} - {shop_url}

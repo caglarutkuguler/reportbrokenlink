@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>New issue reported - {shop_name}</title>
+</head>
+<body style="margin:0; padding:0; background:#f4f6f7;">
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="background:#f4f6f7; padding:24px 12px;">
+    <tr>
+        <td align="center">
+            <table border="0" cellpadding="0" cellspacing="0" width="600" style="max-width:600px; width:100%; background:#ffffff; border-radius:6px; overflow:hidden; font-family:Arial,Helvetica,sans-serif; color:#333333;">
+                <tr>
+                    <td align="left" style="padding:20px 24px; border-bottom:1px solid #eeeeee;">
+                        <a href="{shop_url}" title="{shop_name}"><img src="{shop_logo}" alt="{shop_name}" style="border:none; max-height:48px;"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding:24px 24px 8px;">
+                        <h1 style="margin:0 0 6px; font-size:18px; color:#232323;">A visitor reported an issue on a product page</h1>
+                        <p style="margin:0; font-size:14px; color:#7a7a7a;">{report_date}</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding:8px 24px 0;">
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%" style="font-size:14px;">
+                            <tr>
+                                <td style="padding:8px 0; color:#7a7a7a; width:120px;">Product</td>
+                                <td style="padding:8px 0;"><a href="{product_link}" style="color:#2fb5d2;">{product}</a></td>
+                            </tr>
+                            <tr>
+                                <td style="padding:8px 0; color:#7a7a7a;">Issue type</td>
+                                <td style="padding:8px 0;"><strong>{report_type}</strong></td>
+                            </tr>
+                            <tr>
+                                <td style="padding:8px 0; color:#7a7a7a;">Reported by</td>
+                                <td style="padding:8px 0;">{reporter}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding:8px 0; color:#7a7a7a;">Reply to</td>
+                                <td style="padding:8px 0;">{reporter_email}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding:16px 24px 0;">
+                        <p style="margin:0 0 6px; font-size:13px; color:#7a7a7a;">What they wrote</p>
+                        <!--
+                            white-space:pre-wrap keeps the reporter's line breaks without needing
+                            <br> tags. The module escapes every value before substitution, so
+                            nothing here can be turned into markup by whoever filled in the form.
+                        -->
+                        <div style="padding:14px 16px; background:#f7fafb; border:1px solid #e9eff1; border-radius:4px; font-size:14px; line-height:1.5; white-space:pre-wrap; word-break:break-word;">{message}</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding:24px;">
+                        <a href="{admin_link}" style="display:inline-block; padding:11px 20px; background:#2fb5d2; color:#ffffff; text-decoration:none; border-radius:4px; font-size:14px;">Review it in your back office</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding:16px 24px; border-top:1px solid #eeeeee; font-size:12px; color:#9a9a9a;">
+                        <a href="{shop_url}" style="color:#7a7a7a; text-decoration:none;">{shop_name}</a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

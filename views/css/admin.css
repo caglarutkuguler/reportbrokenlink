@@ -1,0 +1,395 @@
+/**
+ * 2019-2026 MEG Venture
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ *
+ *  @author    MEG Venture
+ *  @copyright 2019-2026 MEG Venture
+ *  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/* Configure page: everything is namespaced under .rbl- so nothing leaks into the admin theme. */
+
+/* ------------------------------------------------------------------ */
+/* How it works                                                         */
+/* ------------------------------------------------------------------ */
+
+.rbl-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.rbl-step {
+    display: flex;
+    gap: 12px;
+    flex: 1 1 260px;
+}
+
+.rbl-step__num {
+    flex: 0 0 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #25b9d7;
+    color: #fff;
+    font-weight: 700;
+    text-align: center;
+    line-height: 28px;
+}
+
+.rbl-step p {
+    margin: 4px 0 0;
+    color: #6c868e;
+}
+
+/* ------------------------------------------------------------------ */
+/* Health checks                                                        */
+/* ------------------------------------------------------------------ */
+
+.rbl-checks {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.rbl-check {
+    padding: 7px 0;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.rbl-check:last-child {
+    border-bottom: 0;
+}
+
+.rbl-check .icon {
+    margin-right: 8px;
+}
+
+.rbl-check--ok .icon { color: #4caf50; }
+.rbl-check--warning .icon { color: #ff9a52; }
+.rbl-check--error .icon { color: #e35d5d; }
+
+.rbl-check--error { color: #a94442; font-weight: 600; }
+
+/* ------------------------------------------------------------------ */
+/* Stats                                                                */
+/* ------------------------------------------------------------------ */
+
+.rbl-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.rbl-stat {
+    flex: 1 1 130px;
+    padding: 14px;
+    border: 1px solid #e9eff1;
+    border-radius: 4px;
+    background: #fafcfc;
+    text-align: center;
+    color: inherit;
+    text-decoration: none;
+}
+
+a.rbl-stat:hover {
+    border-color: #25b9d7;
+    text-decoration: none;
+}
+
+.rbl-stat__value {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.rbl-stat__label {
+    display: block;
+    font-size: 0.75rem;
+    color: #6c868e;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.rbl-stat--open .rbl-stat__value {
+    color: #fb6a6a;
+}
+
+.rbl-subhead {
+    margin: 22px 0 4px;
+}
+
+.rbl-subhead__hint {
+    margin-bottom: 10px;
+    font-size: 0.8125rem;
+}
+
+.rbl-top {
+    margin-bottom: 0;
+}
+
+/* ------------------------------------------------------------------ */
+/* Filters                                                              */
+/* ------------------------------------------------------------------ */
+
+.rbl-filters {
+    padding: 12px;
+    margin-bottom: 14px;
+    background: #fafcfc;
+    border: 1px solid #e9eff1;
+    border-radius: 4px;
+}
+
+.rbl-filters__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.rbl-filter {
+    flex: 0 1 160px;
+}
+
+.rbl-filter--grow {
+    flex: 1 1 200px;
+}
+
+.rbl-filter--actions {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+.rbl-filter label {
+    display: block;
+    margin-bottom: 3px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6c868e;
+}
+
+.rbl-filters__active {
+    margin: 10px 0 0;
+    font-size: 0.8125rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Toolbar and bulk bar                                                 */
+/* ------------------------------------------------------------------ */
+
+.rbl-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.rbl-toolbar__hint {
+    font-size: 0.8125rem;
+}
+
+.rbl-bulk {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    background: #fff8e6;
+    border: 1px solid #ffd88a;
+    border-radius: 4px;
+}
+
+.rbl-bulk[hidden] {
+    display: none;
+}
+
+.rbl-bulk__count {
+    font-weight: 700;
+    margin-right: 4px;
+}
+
+/* ------------------------------------------------------------------ */
+/* Table                                                                */
+/* ------------------------------------------------------------------ */
+
+.rbl-table {
+    table-layout: auto;
+}
+
+.rbl-col-check {
+    width: 32px;
+}
+
+.rbl-col-actions {
+    width: 90px;
+}
+
+.rbl-row--open td {
+    background: #fffdf5;
+}
+
+.rbl-row--spam td,
+.rbl-row--duplicate td {
+    opacity: 0.6;
+}
+
+.rbl-type {
+    display: block;
+    font-weight: 600;
+}
+
+.rbl-excerpt {
+    display: block;
+    font-size: 0.8125rem;
+    color: #6c868e;
+}
+
+.rbl-date {
+    white-space: nowrap;
+    font-size: 0.8125rem;
+}
+
+.rbl-mail,
+.rbl-ext {
+    font-size: 0.8125rem;
+}
+
+.rbl-status {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.rbl-status--open { background: #fdecc8; color: #8a6100; }
+.rbl-status--in_progress { background: #cfe8ff; color: #14568c; }
+.rbl-status--resolved { background: #d6f2d8; color: #256b2b; }
+.rbl-status--duplicate { background: #e8e8e8; color: #5a5a5a; }
+.rbl-status--spam { background: #fbd6d6; color: #8c1f1f; }
+
+/* ------------------------------------------------------------------ */
+/* Detail row                                                           */
+/* ------------------------------------------------------------------ */
+
+.rbl-detail[hidden] {
+    display: none;
+}
+
+.rbl-detail > td {
+    background: #f7fafb !important;
+}
+
+.rbl-detail__grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 8px 4px;
+}
+
+.rbl-detail__main {
+    flex: 1 1 320px;
+}
+
+.rbl-detail__side {
+    flex: 0 1 300px;
+}
+
+.rbl-detail__main h4 {
+    margin-top: 0;
+}
+
+.rbl-detail__message {
+    padding: 10px 12px;
+    background: #fff;
+    border: 1px solid #e9eff1;
+    border-radius: 4px;
+    /* Keeps the reporter's own line breaks without any markup being involved. */
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.rbl-detail__meta {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 4px 14px;
+    margin: 14px 0 0;
+    font-size: 0.8125rem;
+}
+
+.rbl-detail__meta dt {
+    color: #6c868e;
+    font-weight: 600;
+}
+
+.rbl-detail__meta dd {
+    margin: 0;
+    word-break: break-word;
+}
+
+.rbl-notify {
+    padding: 8px 10px;
+    margin-bottom: 10px;
+    background: #eef8ff;
+    border: 1px solid #cfe8ff;
+    border-radius: 4px;
+    font-size: 0.8125rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* Pagination                                                           */
+/* ------------------------------------------------------------------ */
+
+.rbl-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.rbl-pagination__label {
+    font-size: 0.8125rem;
+    color: #6c868e;
+}
+
+/* ------------------------------------------------------------------ */
+/* Dashboard widget                                                     */
+/* ------------------------------------------------------------------ */
+
+.rbl-widget {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    background: #fff8e6;
+    border: 1px solid #ffd88a;
+    border-radius: 4px;
+}
+
+.rbl-widget__icon {
+    font-size: 1.5rem;
+    color: #d38b00;
+}
+
+.rbl-widget__text {
+    flex: 1;
+}
+
+.rbl-widget__text strong {
+    display: block;
+}
+
+.rbl-widget__hint {
+    font-size: 0.8125rem;
+    color: #6c868e;
+}

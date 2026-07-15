@@ -1,0 +1,17 @@
+# Module PHP files are only ever included by PrestaShop's dispatcher — nothing here is meant to
+# be requested directly over HTTP. Denying direct access costs nothing and removes a whole class
+# of "someone found the endpoint" problems.
+#
+# Both syntaxes are present on purpose: Apache 2.4 needs mod_access_compat loaded to understand
+# "Order Allow,Deny", and on a server without it the 2.2 syntax alone raises a 500 for this whole
+# directory. (Neither has any effect under Nginx, where the same protection belongs in the
+# server config.)
+<FilesMatch "\.php$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order Allow,Deny
+        Deny from all
+    </IfModule>
+</FilesMatch>

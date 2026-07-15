@@ -1,0 +1,21 @@
+A visitor reported an issue on a product page
+=============================================
+
+{report_date}
+
+Product     : {product}
+              {product_link}
+Issue type  : {report_type}
+Reported by : {reporter}
+Reply to    : {reporter_email}
+
+What they wrote
+---------------
+
+{message}
+
+Review it in your back office:
+{admin_link}
+
+--
+{shop_name} - {shop_url}

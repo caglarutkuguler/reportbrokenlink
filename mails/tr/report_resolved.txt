@@ -1,0 +1,21 @@
+Merhaba {reporter},
+
+Bir süre önce {product} sayfamızda bir sorun olduğunu bize bildirmiştiniz.
+Teşekkür ederiz - konuyu inceledik.
+
+Cevabımız
+---------
+
+{admin_response}
+
+Bildirdiğiniz sorun
+-------------------
+
+{message}
+
+Sizin gibi ziyaretçilerin bildirimleri bizim için gerçekten değerli -
+gözümüzden kaçan şeyleri yakalamamızı sağlıyor. Ayırdığınız zaman için
+teşekkür ederiz.
+
+--
+{shop_name} - {shop_url}
