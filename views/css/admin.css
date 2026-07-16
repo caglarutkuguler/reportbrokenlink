@@ -361,35 +361,6 @@ a.rbl-stat:hover {
     color: #6c868e;
 }
 
-/* ------------------------------------------------------------------ */
-/* Dashboard widget                                                     */
-/* ------------------------------------------------------------------ */
-
-.rbl-widget {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    margin-bottom: 16px;
-    background: #fff8e6;
-    border: 1px solid #ffd88a;
-    border-radius: 4px;
-}
-
-.rbl-widget__icon {
-    font-size: 1.5rem;
-    color: #d38b00;
-}
-
-.rbl-widget__text {
-    flex: 1;
-}
-
-.rbl-widget__text strong {
-    display: block;
-}
-
-.rbl-widget__hint {
-    font-size: 0.8125rem;
-    color: #6c868e;
-}
+/* The Dashboard widget (views/templates/admin/dashboard.tpl) is deliberately NOT styled here:
+   it renders on the Dashboard controller, which does not load this stylesheet, so it uses the
+   admin theme's own built-in classes instead. */

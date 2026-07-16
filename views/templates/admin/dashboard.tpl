@@ -14,20 +14,24 @@
 *}
 
 {* Only rendered when at least one report is waiting, so the Dashboard stays quiet on a shop
-   with nothing to do. The counts are kept outside the translated sentences: building them with
-   sprintf() in the template would need a PHP call Smarty does not expose here, and it saves
-   translators from having to preserve placeholders. *}
-<div class="rbl-widget">
-    <i class="icon icon-flag rbl-widget__icon"></i>
-    <div class="rbl-widget__text">
-        <strong>
-            {$rbl_open_count|intval} {l s='page issue(s) reported by customers are waiting for you' mod='reportbrokenlink'}
-        </strong>
-        <span class="rbl-widget__hint">
-            {$rbl_week_count|intval} {l s='report(s) came in over the last 7 days.' mod='reportbrokenlink'}
-        </span>
-    </div>
-    <a class="btn btn-default" href="{$rbl_dashboard_link|escape:'html':'UTF-8'}">
+   with nothing to do.
+
+   Styled with the admin theme's own Bootstrap classes (alert / btn / icon), NOT the module's
+   admin.css. This template renders on the Dashboard controller, which does not load the
+   module's stylesheet — that only loads on the module's own configure page — so any custom
+   class here would render unstyled. This mirrors the sibling wecallyouback widget so the two
+   sit consistently on the Dashboard.
+
+   The counts stay outside the translated sentences: building them with sprintf() in the
+   template needs a PHP call Smarty does not expose here, and it spares translators from having
+   to preserve placeholders. *}
+<div class="alert alert-info" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+    <span>
+        <i class="icon icon-flag"></i>&nbsp;
+        <strong>{$rbl_open_count|intval} {l s='page issue(s) reported by customers are waiting for you' mod='reportbrokenlink'}</strong>
+        &nbsp;{$rbl_week_count|intval} {l s='report(s) came in over the last 7 days.' mod='reportbrokenlink'}
+    </span>
+    <a href="{$rbl_dashboard_link|escape:'html':'UTF-8'}" class="btn btn-primary btn-sm">
         {l s='Review reports' mod='reportbrokenlink'}
     </a>
 </div>
