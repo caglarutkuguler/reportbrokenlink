@@ -144,11 +144,35 @@
         }
     }
 
-    openButton.addEventListener('click', open);
+    // Delegated, not bound to the button we captured at load. In the "next to product
+    // information" position PrestaShop re-renders that area over AJAX whenever the visitor picks
+    // a different combination (size, colour...), which replaces the original button with a fresh
+    // copy that would have no handler. Listening on document means whichever [data-rbl-open] is
+    // in the DOM at click time works — the original and every refreshed replacement alike.
+    document.addEventListener('click', function (event) {
+        if (event.target.closest && event.target.closest('[data-rbl-open]')) {
+            event.preventDefault();
+            open();
+        }
+    });
 
     Array.prototype.forEach.call(modal.querySelectorAll('[data-rbl-dismiss]'), function (element) {
         element.addEventListener('click', close);
     });
+
+    // The same AJAX refresh re-injects our whole hook output, so a second, inert copy of the
+    // modal (with duplicate element ids) lands back inside the product form. Our real modal is
+    // the one already moved to <body>; drop any other copy so ids stay unique and the singleton
+    // in <body> — which holds the valid form token — remains the one that opens.
+    if (window.prestashop && typeof window.prestashop.on === 'function') {
+        window.prestashop.on('updatedProduct', function () {
+            Array.prototype.forEach.call(document.querySelectorAll('[data-rbl-modal]'), function (node) {
+                if (node !== modal) {
+                    node.parentNode.removeChild(node);
+                }
+            });
+        });
+    }
 
     /* ------------------------------------------------------------------ */
     /* Character counter                                                    */
@@ -303,9 +327,32 @@
         }
     }
 
-    form.addEventListener('submit', function (event) {
-        event.preventDefault();
+    /**
+     * Builds the request body by reading the fields directly.
+     *
+     * The container is a <div>, not a <form> (see button.tpl for why), so `new FormData(el)`
+     * is not available — it only accepts a form. Walking the named controls ourselves gets the
+     * same result and lets us skip unchecked checkboxes/radios the way a real form would.
+     *
+     * @returns {FormData}
+     */
+    function collectFields() {
+        var data = new FormData();
 
+        Array.prototype.forEach.call(form.querySelectorAll('input, select, textarea'), function (field) {
+            if (!field.name) {
+                return;
+            }
+            if ((field.type === 'checkbox' || field.type === 'radio') && !field.checked) {
+                return;
+            }
+            data.append(field.name, field.value);
+        });
+
+        return data;
+    }
+
+    function submitReport() {
         if (submitting || !validate()) {
             return;
         }
@@ -313,7 +360,7 @@
         setLoading(true);
 
         getRecaptchaToken().then(function (token) {
-            var data = new FormData(form);
+            var data = collectFields();
             if (token) {
                 data.append('g-recaptcha-response', token);
             }
@@ -356,5 +403,17 @@
             setLoading(false);
             showGlobalError(config.i18n.networkError);
         });
+    }
+
+    // No form element means no native submit event, so wire the button directly.
+    submitButton.addEventListener('click', submitReport);
+
+    // Enter submits, matching form behaviour — except inside the textarea, where Enter must
+    // still insert a newline.
+    form.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' && event.target && event.target.tagName !== 'TEXTAREA') {
+            event.preventDefault();
+            submitReport();
+        }
     });
 })();

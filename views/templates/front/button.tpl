@@ -34,10 +34,15 @@
                         aria-label="{l s='Close' mod='reportbrokenlink'}">&times;</button>
             </div>
 
-            {* No action: front.js intercepts the submit and posts to the module's report
-               controller. The endpoint URL is passed through Media::addJsDef rather than being
-               written into the markup, so a cached page cannot pin a stale one. *}
-            <form class="rbl-modal__body" data-rbl-form novalidate method="post">
+            {* Deliberately a <div>, not a <form>. In the "next to product information"
+               position this markup is rendered INSIDE the theme's add-to-cart <form>
+               (classic product.tpl includes displayProductAdditionalInfo inside
+               <form id="add-to-cart-or-refresh">). A <form> nested in a <form> is invalid HTML,
+               so the browser's parser silently drops the inner one before any script runs —
+               which made front.js fail to find [data-rbl-form] and bail out, so the button did
+               nothing. A <div> is never touched by the parser. front.js collects the fields and
+               posts them with fetch(), so no real form element is needed. *}
+            <div class="rbl-modal__body" data-rbl-form>
                 <p class="rbl-intro">{l s='Noticed something wrong on this page? Tell us what you saw and we will fix it.' mod='reportbrokenlink'}</p>
 
                 <div class="rbl-alert rbl-alert--error" data-rbl-error hidden role="alert"></div>
@@ -109,12 +114,12 @@
                     <button type="button" class="rbl-btn rbl-btn--ghost" data-rbl-dismiss>
                         {l s='Cancel' mod='reportbrokenlink'}
                     </button>
-                    <button type="submit" class="rbl-btn rbl-btn--primary" data-rbl-submit>
+                    <button type="button" class="rbl-btn rbl-btn--primary" data-rbl-submit>
                         <span class="rbl-spinner" data-rbl-spinner hidden aria-hidden="true"></span>
                         <span data-rbl-submit-label>{l s='Send report' mod='reportbrokenlink'}</span>
                     </button>
                 </div>
-            </form>
+            </div>
 
             <div class="rbl-success" data-rbl-success hidden>
                 <svg class="rbl-success__icon" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false">
