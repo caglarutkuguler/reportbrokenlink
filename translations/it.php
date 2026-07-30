@@ -167,6 +167,12 @@ $_MODULE['<{reportbrokenlink}prestashop>7a48423600a8de29f11cbb04c8e23fb5'] = 'La
 $_MODULE['<{reportbrokenlink}prestashop>ea4788705e6873b424c65e91c2846b19'] = 'Annulla';
 $_MODULE['<{reportbrokenlink}prestashop>98892a7db1a3904050e1fb7fd1e5e008'] = 'Invia segnalazione';
 
+// --- Backfilled missing keys (auto-sync)
+$_MODULE['<{reportbrokenlink}prestashop>configure_516985a882952330e7c683ba8c3cf3ae'] = 'Ogni pagina di prodotto riceve un discreto pulsante "Segnala un problema". Chiunque può aprirlo, clienti e ospiti, scegliere cosa c\'è che non va e descriverlo in una frase.';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_9b4bfa337b1681552aed6367b5b06399'] = 'Aggiunge una casella di controllo "Informa il cliente" quando imposti un report su Risolto. Inviato sempre e solo se il giornalista ha lasciato un indirizzo e-mail.';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_c5ea37446d8ee23f042e796ea0e456df'] = 'Se la stessa persona segnala lo stesso problema sullo stesso prodotto due volte nell\'arco di 24 ore, la seconda segnalazione verrà archiviata come "Duplicato" invece di avvisarti nuovamente.';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_f6291bd8f6d6a2b55a3d50a82f07eaf7'] = '"%s" non è un indirizzo e-mail valido.';
+
 // --- Auto-regenerated below: keys include the template-basename source segment
 //     PrestaShop 1.7+ actually looks up (<{module}prestashop>{basename}_{hash}).
 //     The entries above this line use the old (pre-1.7, basename-less) key format

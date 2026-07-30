@@ -190,7 +190,7 @@ $_MODULE['<{reportbrokenlink}prestashop>configure_17cd4a7c8edc9c90e58f4d19b566bf
 $_MODULE['<{reportbrokenlink}prestashop>configure_1f0763319155e991988cccf480a777a5'] = 'The report is saved and you are e-mailed';
 $_MODULE['<{reportbrokenlink}prestashop>configure_294ca91e2bc21047afaf60419e86808f'] = 'Deleted product';
 $_MODULE['<{reportbrokenlink}prestashop>configure_3a9128ebd995b4acd88acee3d7fa7710'] = 'Marked as spam';
-$_MODULE['<{reportbrokenlink}prestashop>configure_516985a882952330e7c683ba8c3cf3ae'] = 'Every product page gets a discreet \"Report an issue\" button. Anyone can open it - customers and guests alike - pick what is wrong, and describe it in a sentence.';
+$_MODULE['<{reportbrokenlink}prestashop>configure_516985a882952330e7c683ba8c3cf3ae'] = 'Every product page gets a discreet "Report an issue" button. Anyone can open it - customers and guests alike - pick what is wrong, and describe it in a sentence.';
 $_MODULE['<{reportbrokenlink}prestashop>configure_78848b5ef5b3ff6795a7ba7dd4adcbad'] = 'At a glance';
 $_MODULE['<{reportbrokenlink}prestashop>configure_8c3ee38031127d6bc5bc9352b9c80a69'] = 'Reported this month';
 $_MODULE['<{reportbrokenlink}prestashop>configure_92f8c7373867865f4aed1d155481623d'] = 'Reported this week';
@@ -260,7 +260,7 @@ $_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_931651a625370f37e35a090
 $_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_93cba07454f06a4a960172bbd6e2a435'] = 'Yes';
 $_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_93e09b8386c71268deec23c98433143c'] = 'No valid notification e-mail address is configured, so nobody will be alerted about new reports.';
 $_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_98ff99a7b8c12f27985f466941b36412'] = 'Wrong price';
-$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_9b4bfa337b1681552aed6367b5b06399'] = 'Adds a \"notify the customer\" tick box when you set a report to Resolved. Only ever sent if the reporter left an e-mail address.';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_9b4bfa337b1681552aed6367b5b06399'] = 'Adds a "notify the customer" tick box when you set a report to Resolved. Only ever sent if the reporter left an e-mail address.';
 $_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_9eeec859050b67cb7bb3a9411608bb1d'] = 'Flag repeat reports as duplicates';
 $_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_a54572e9f12d45270cdc0a0aa2eb71f6'] = 'Visitors can report %d of the 4 issue types.';
 $_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_ab0ce71498074524c5cd6b07ac5f057c'] = 'reCAPTCHA site key';
@@ -280,7 +280,7 @@ $_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_bafd7322c6e97d25b6299b5
 $_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_bf086eb471716d6e62b731268d06807d'] = 'Something else';
 $_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_bf92517552ba2c26b9c47a22af0aef4e'] = 'Report an Issue - Customer Product Page Feedback';
 $_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_c3bf447eabe632720a3aa1a7ce401274'] = 'Open';
-$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_c5ea37446d8ee23f042e796ea0e456df'] = 'If the same person reports the same issue on the same product twice within 24 hours, the second one is filed as \"Duplicate\" instead of alerting you again.';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_c5ea37446d8ee23f042e796ea0e456df'] = 'If the same person reports the same issue on the same product twice within 24 hours, the second one is filed as "Duplicate" instead of alerting you again.';
 $_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_c9cc8cce247e49bae79f15173ce97354'] = 'Save';
 $_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_cc7088f9ad39799e15b894b25c906d32'] = 'One or more addresses, separated by commas, e.g. web@example.com,shop@example.com. Reports are always saved to the list below even if e-mail fails.';
 $_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_cd605752cd26aea7e7a8c20bc96592c0'] = 'Please choose a valid button position.';
@@ -295,7 +295,7 @@ $_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_ec8831b7ad3bbe65981fcb9
 $_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_ed75712b0eb1913c28a3872731ffd48d'] = 'Duplicate';
 $_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_ee7135ab8d6d9b93a178580987bd43af'] = 'Reports per page';
 $_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_f4f70727dc34561dfde1a3c529b6205c'] = 'Settings';
-$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_f6291bd8f6d6a2b55a3d50a82f07eaf7'] = '\"%s\" is not a valid e-mail address.';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_f6291bd8f6d6a2b55a3d50a82f07eaf7'] = '"%s" is not a valid e-mail address.';
 $_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_f691f042a559b1c1a4f89826c6f75760'] = 'Resolved';
 $_MODULE['<{reportbrokenlink}prestashop>reports_0979731fb0c33e2b06ee2735f59eae36'] = 'Mark in progress';
 $_MODULE['<{reportbrokenlink}prestashop>reports_10ac3d04253ef7e1ddc73e6091c0cd55'] = 'Next';

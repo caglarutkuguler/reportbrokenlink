@@ -167,6 +167,12 @@ $_MODULE['<{reportbrokenlink}prestashop>7a48423600a8de29f11cbb04c8e23fb5'] = 'Bu
 $_MODULE['<{reportbrokenlink}prestashop>ea4788705e6873b424c65e91c2846b19'] = 'İptal';
 $_MODULE['<{reportbrokenlink}prestashop>98892a7db1a3904050e1fb7fd1e5e008'] = 'Bildirimi gönder';
 
+// --- Backfilled missing keys (auto-sync)
+$_MODULE['<{reportbrokenlink}prestashop>configure_516985a882952330e7c683ba8c3cf3ae'] = 'Her ürün sayfasında gizli bir "Sorun bildir" düğmesi bulunur. Herkes (hem müşteriler hem de misafirler) onu açabilir, neyin yanlış olduğunu seçip bir cümleyle açıklayabilir.';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_9b4bfa337b1681552aed6367b5b06399'] = 'Bir raporu Çözümlendi olarak ayarladığınızda "müşteriye bildir" onay kutusu eklenir. Yalnızca muhabir bir e-posta adresi bıraktığında gönderilir.';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_c5ea37446d8ee23f042e796ea0e456df'] = 'Aynı kişi aynı ürünle ilgili aynı sorunu 24 saat içinde iki kez bildirirse ikincisi sizi tekrar uyarmak yerine "Yinelenen" olarak dosyalanır.';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_f6291bd8f6d6a2b55a3d50a82f07eaf7'] = '"%s" geçerli bir e-posta adresi değil.';
+
 // --- Auto-regenerated below: keys include the template-basename source segment
 //     PrestaShop 1.7+ actually looks up (<{module}prestashop>{basename}_{hash}).
 //     The entries above this line use the old (pre-1.7, basename-less) key format

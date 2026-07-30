@@ -167,6 +167,12 @@ $_MODULE['<{reportbrokenlink}prestashop>7a48423600a8de29f11cbb04c8e23fb5'] = 'Di
 $_MODULE['<{reportbrokenlink}prestashop>ea4788705e6873b424c65e91c2846b19'] = 'Abbrechen';
 $_MODULE['<{reportbrokenlink}prestashop>98892a7db1a3904050e1fb7fd1e5e008'] = 'Meldung senden';
 
+// --- Backfilled missing keys (auto-sync)
+$_MODULE['<{reportbrokenlink}prestashop>configure_516985a882952330e7c683ba8c3cf3ae'] = 'Jede Produktseite erhält einen diskreten „Problem melden“-Button. Jeder kann es öffnen – Kunden und Gäste gleichermaßen –, heraussuchen, was falsch ist, und es in einem Satz beschreiben.';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_9b4bfa337b1681552aed6367b5b06399'] = 'Fügt ein Kontrollkästchen „Kunden benachrichtigen“ hinzu, wenn Sie einen Bericht auf „Gelöst“ setzen. Wird nur gesendet, wenn der Reporter eine E-Mail-Adresse hinterlassen hat.';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_c5ea37446d8ee23f042e796ea0e456df'] = 'Wenn dieselbe Person innerhalb von 24 Stunden zweimal dasselbe Problem mit demselben Produkt meldet, wird das zweite Problem als „Duplikat“ abgelegt, anstatt Sie erneut zu benachrichtigen.';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_f6291bd8f6d6a2b55a3d50a82f07eaf7'] = '„%s“ ist keine gültige E-Mail-Adresse.';
+
 // --- Auto-regenerated below: keys include the template-basename source segment
 //     PrestaShop 1.7+ actually looks up (<{module}prestashop>{basename}_{hash}).
 //     The entries above this line use the old (pre-1.7, basename-less) key format

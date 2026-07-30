@@ -167,6 +167,12 @@ $_MODULE['<{reportbrokenlink}prestashop>7a48423600a8de29f11cbb04c8e23fb5'] = 'La
 $_MODULE['<{reportbrokenlink}prestashop>ea4788705e6873b424c65e91c2846b19'] = 'Annuleren';
 $_MODULE['<{reportbrokenlink}prestashop>98892a7db1a3904050e1fb7fd1e5e008'] = 'Melding verzenden';
 
+// --- Backfilled missing keys (auto-sync)
+$_MODULE['<{reportbrokenlink}prestashop>configure_516985a882952330e7c683ba8c3cf3ae'] = 'Elke productpagina krijgt een discrete knop \'Een probleem melden\'. Iedereen kan het openen (zowel klanten als gasten), wat er mis is, en dit in een zin beschrijven.';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_9b4bfa337b1681552aed6367b5b06399'] = 'Voegt een aankruisvakje \'Informeer de klant\' toe wanneer u een rapport instelt op Opgelost. Wordt alleen verzonden als de melder een e-mailadres heeft achtergelaten.';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_c5ea37446d8ee23f042e796ea0e456df'] = 'Als dezelfde persoon binnen 24 uur twee keer hetzelfde probleem met hetzelfde product meldt, wordt de tweede opgeslagen als \'Duplicaat\' in plaats van dat u opnieuw wordt gewaarschuwd.';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_f6291bd8f6d6a2b55a3d50a82f07eaf7'] = '"%s" is geen geldig e-mailadres.';
+
 // --- Auto-regenerated below: keys include the template-basename source segment
 //     PrestaShop 1.7+ actually looks up (<{module}prestashop>{basename}_{hash}).
 //     The entries above this line use the old (pre-1.7, basename-less) key format
