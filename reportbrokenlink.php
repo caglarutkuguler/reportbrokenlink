@@ -778,6 +778,8 @@ class ReportBrokenLink extends Module
 
     public function getContent()
     {
+        require_once _PS_MODULE_DIR_ . 'reportbrokenlink/classes/MegVentureAdsWidget.php';
+
         $this->html = '';
 
         Configuration::updateValue(
@@ -806,7 +808,8 @@ class ReportBrokenLink extends Module
         return $this->html
             . $this->renderIntroduction()
             . $this->renderReportList()
-            . $this->renderSettingsForm();
+            . $this->renderSettingsForm()
+            . MegVentureAdsWidget::render('https://megventure.com/index.php?fc=module&module=virtualproductcombination&controller=adswidget');
     }
 
     /**
