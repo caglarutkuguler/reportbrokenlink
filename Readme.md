@@ -334,4 +334,4 @@ See `CHANGELOG.md`. The security and correctness findings that motivated 4.0.0 a
 
 ---
 
-2019-2026 MEG Venture — Academic Free License (AFL 3.0)
+2019-2026 MEG Venture & Consulting Ltd. — MIT License
