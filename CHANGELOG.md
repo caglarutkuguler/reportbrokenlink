@@ -4,6 +4,19 @@ All notable changes to **reportbrokenlink** are documented here.
 
 ---
 
+## 4.1.0 — 2026-08-22
+
+### Added
+
+- A single review-request line on the module's own configuration page. It
+  appears at the earliest 21 days after installing, asks once for a short
+  review on megventure.com, and disappears forever after a click, a
+  "No thanks", or three unanswered views. It makes no outbound request of any
+  kind and stores nothing beyond three prefixed configuration values, which
+  uninstalling removes.
+
+---
+
 ## 4.0.0 — 2026-07-15
 
 A rewrite. The module now stores reports instead of only mailing them, adds a back-office

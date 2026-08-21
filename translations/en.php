@@ -341,3 +341,7 @@ $_MODULE['<{reportbrokenlink}prestashop>reports_f49bd45b3392cd979ab3244284910cfe
 $_MODULE['<{reportbrokenlink}prestashop>reports_f70bfbff9803bc7723fc6e02a44a9b39'] = 'Issue type';
 $_MODULE['<{reportbrokenlink}prestashop>reports_f83c2e25a1c0a401f0e7d1a40857f7b8'] = 'Select report';
 $_MODULE['<{reportbrokenlink}prestashop>reports_ffbb3331182cbfda3ccea5bb0c3eea46'] = 'Last updated';
+$_MODULE['<{reportbrokenlink}prestashop>megventurereviewnudge_c980491d2b999421c4aa1ef4449323e1'] = 'Happy with this module? A short review helps other merchants find it.';
+$_MODULE['<{reportbrokenlink}prestashop>megventurereviewnudge_6ecbf3c5ab7a06f08c526f02bce2b2d6'] = 'Leave a review';
+$_MODULE['<{reportbrokenlink}prestashop>megventurereviewnudge_8ad4303b83a62fb6ca3b025bad5bc114'] = 'No thanks';
+$_MODULE['<{reportbrokenlink}prestashop>megventurereviewnudge_4d170dcb0d03a0efa011c9193219bb68'] = 'Okay, we will not ask again.';

@@ -38,7 +38,7 @@ class ReportBrokenLink extends Module
     {
         $this->name = 'reportbrokenlink';
         $this->tab = 'front_office_features';
-        $this->version = '4.0.0';
+        $this->version = '4.1.0';
         $this->author = 'MEG Venture';
         $this->need_instance = 0;
         $this->bootstrap = true;
@@ -62,17 +62,23 @@ class ReportBrokenLink extends Module
 
     public function install()
     {
+        require_once dirname(__FILE__) . '/classes/MegVentureReviewNudge.php';
+
         return parent::install()
             && $this->registerHook('displayProductAdditionalInfo')
             && $this->registerHook('displayFooterProduct')
             && $this->registerHook('actionFrontControllerSetMedia')
             && $this->registerHook('actionProductDelete')
             && $this->registerHook('displayDashboardTop')
+            && MegVentureReviewNudge::onInstall()
             && include dirname(__FILE__) . '/sql/install.php';
     }
 
     public function uninstall()
     {
+        require_once dirname(__FILE__) . '/classes/MegVentureReviewNudge.php';
+        MegVentureReviewNudge::onUninstall();
+
         // parent::uninstall() removes the hook registrations itself; calling unregisterHook()
         // afterwards (as 3.x did) operates on a module row that no longer exists and can make a
         // successful uninstall report as failed.
@@ -770,6 +776,14 @@ class ReportBrokenLink extends Module
     public function getContent()
     {
         require_once _PS_MODULE_DIR_ . 'reportbrokenlink/classes/MegVentureAdsWidget.php';
+        require_once _PS_MODULE_DIR_ . 'reportbrokenlink/classes/MegVentureReviewNudge.php';
+
+        // May redirect (review click) — before anything renders on purpose.
+        $nudge = MegVentureReviewNudge::handleRequest($this)
+            . MegVentureReviewNudge::render(
+                $this,
+                $this->context->link->getAdminLink('AdminModules', true, [], ['configure' => $this->name])
+            );
 
         $this->html = '';
 
@@ -796,7 +810,8 @@ class ReportBrokenLink extends Module
 
         $this->addFlashMessage();
 
-        return $this->html
+        return $nudge
+            . $this->html
             . $this->renderIntroduction()
             . $this->renderReportList()
             . $this->renderSettingsForm()
