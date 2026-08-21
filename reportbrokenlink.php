@@ -779,10 +779,12 @@ class ReportBrokenLink extends Module
         require_once _PS_MODULE_DIR_ . 'reportbrokenlink/classes/MegVentureReviewNudge.php';
 
         // May redirect (review click) — before anything renders on purpose.
+        // Concatenated configure URL on purpose: getAdminLink()'s $params
+        // argument only appeared mid-1.7, and this module supports 1.7.0.
         $nudge = MegVentureReviewNudge::handleRequest($this)
             . MegVentureReviewNudge::render(
                 $this,
-                $this->context->link->getAdminLink('AdminModules', true, [], ['configure' => $this->name])
+                $this->context->link->getAdminLink('AdminModules', true) . '&configure=' . $this->name
             );
 
         $this->html = '';
