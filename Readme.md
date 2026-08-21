@@ -14,6 +14,8 @@ it.
 
 ---
 
+**Installable zip:** the archive GitHub generates on the releases page is a source snapshot, not an installable module — PrestaShop rejects it because the folder inside carries the version number. Download the ready-to-install zip from [megventure.com](https://megventure.com/en/free-modules/17-prestashop-report-an-issue-customer-product-page-feedback-8691246266620.html).
+
 ## Version support matrix
 
 | PrestaShop | Status | Notes |
