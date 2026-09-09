@@ -38,7 +38,7 @@ class ReportBrokenLink extends Module
     {
         $this->name = 'reportbrokenlink';
         $this->tab = 'front_office_features';
-        $this->version = '4.1.0';
+        $this->version = '4.1.1';
         $this->author = 'MEG Venture';
         $this->need_instance = 0;
         $this->bootstrap = true;

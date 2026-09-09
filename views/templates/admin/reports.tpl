@@ -12,10 +12,26 @@
 *  @copyright 2019-2026 MEG Venture & Consulting Ltd.
 *  @license   https://opensource.org/licenses/MIT MIT License
 *}
+<style>
+{literal}
+/* Back-office icons. These used to be FontAwesome 4, which the back office shipped up to
+   PrestaShop 8; PrestaShop 9 replaced it with Material Symbols Outlined. An icon-font class
+   selects a private-use code point, so the moment the font is not there the browser has
+   nothing to fall back to and draws an empty box. These now come from the set the core loads
+   for its own interface, which is ligature-based: the icon name is the element's text.
+   Sized down from the 24px default and set back to inheriting the text colour, so they sit
+   where the FontAwesome ones did. */
+.material-icons.mv-ico{font-size:18px;line-height:1;vertical-align:middle;margin-right:4px;}
+.material-icons.mv-ico,.material-icons.mv-ico:hover{color:inherit;}
+h3 .material-icons.mv-ico,
+.panel-heading .material-icons.mv-ico{font-size:20px;}
+.btn .material-icons.mv-ico{font-size:16px;margin-right:3px;}
+{/literal}
+</style>
 
 <div class="panel">
     <h3>
-        <i class="icon icon-flag"></i> {l s='Reports' mod='reportbrokenlink'}
+        <i class="material-icons mv-ico">flag</i> {l s='Reports' mod='reportbrokenlink'}
         <span class="badge">{$rbl_total|intval}</span>
     </h3>
 
@@ -85,7 +101,7 @@
 
             <div class="rbl-filter rbl-filter--actions">
                 <button type="submit" class="btn btn-default">
-                    <i class="icon icon-search"></i> {l s='Filter' mod='reportbrokenlink'}
+                    <i class="material-icons mv-ico">search</i> {l s='Filter' mod='reportbrokenlink'}
                 </button>
                 {if $rbl_has_filters}
                     <a class="btn btn-link" href="{$rbl_configure_url|escape:'html':'UTF-8'}">
@@ -107,7 +123,7 @@
     {if $rbl_total > 0}
         <div class="rbl-toolbar">
             <a class="btn btn-default" href="{$rbl_export_url|escape:'html':'UTF-8'}">
-                <i class="icon icon-cloud-download"></i> {l s='Export to CSV' mod='reportbrokenlink'}
+                <i class="material-icons mv-ico">cloud_download</i> {l s='Export to CSV' mod='reportbrokenlink'}
             </a>
             <span class="rbl-toolbar__hint text-muted">
                 {l s='The export contains exactly the reports matching the filters above.' mod='reportbrokenlink'}
@@ -122,17 +138,17 @@
                     <span data-rbl-bulk-count>0</span> {l s='selected' mod='reportbrokenlink'}
                 </span>
                 <button type="submit" name="rbl_bulk_progress" class="btn btn-default">
-                    <i class="icon icon-spinner"></i> {l s='Mark in progress' mod='reportbrokenlink'}
+                    <i class="material-icons mv-ico">progress_activity</i> {l s='Mark in progress' mod='reportbrokenlink'}
                 </button>
                 <button type="submit" name="rbl_bulk_resolve" class="btn btn-default">
-                    <i class="icon icon-check"></i> {l s='Mark resolved' mod='reportbrokenlink'}
+                    <i class="material-icons mv-ico">check</i> {l s='Mark resolved' mod='reportbrokenlink'}
                 </button>
                 <button type="submit" name="rbl_bulk_spam" class="btn btn-default">
-                    <i class="icon icon-ban"></i> {l s='Mark as spam' mod='reportbrokenlink'}
+                    <i class="material-icons mv-ico">block</i> {l s='Mark as spam' mod='reportbrokenlink'}
                 </button>
                 <button type="submit" name="rbl_bulk_delete" class="btn btn-danger"
                         data-rbl-confirm="{l s='Delete the selected report(s)? This cannot be undone.' mod='reportbrokenlink'|escape:'html':'UTF-8'}">
-                    <i class="icon icon-trash"></i> {l s='Delete' mod='reportbrokenlink'}
+                    <i class="material-icons mv-ico">delete</i> {l s='Delete' mod='reportbrokenlink'}
                 </button>
             </div>
 
@@ -167,7 +183,7 @@
                                 <a class="rbl-ext" href="{$report.front_link|escape:'html':'UTF-8'}" target="_blank"
                                    rel="noopener noreferrer"
                                    title="{l s='Open the page a visitor sees' mod='reportbrokenlink'}">
-                                    <i class="icon icon-external-link"></i>
+                                    <i class="material-icons mv-ico">open_in_new</i>
                                 </a>
                             {/if}
                         </td>
@@ -195,7 +211,7 @@
                             <button type="button" class="btn btn-default btn-xs"
                                     data-rbl-toggle="rbl-detail-{$report.id_report|intval}"
                                     aria-expanded="false" aria-controls="rbl-detail-{$report.id_report|intval}">
-                                {l s='View' mod='reportbrokenlink'} <i class="icon icon-caret-down"></i>
+                                {l s='View' mod='reportbrokenlink'} <i class="material-icons mv-ico">arrow_drop_down</i>
                             </button>
                         </td>
                     </tr>
@@ -267,7 +283,7 @@
 
                                     <button type="submit" class="btn btn-primary"
                                             name="rbl_save_report" value="{$report.id_report|intval}">
-                                        <i class="icon icon-save"></i> {l s='Save' mod='reportbrokenlink'}
+                                        <i class="material-icons mv-ico">save</i> {l s='Save' mod='reportbrokenlink'}
                                     </button>
                                 </div>
                             </div>
