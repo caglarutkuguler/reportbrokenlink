@@ -230,7 +230,7 @@ can type `=HYPERLINK(...)` into the message field and Excel would otherwise exec
 open the file.
 
 **Turkish (or another language) strings show in English.**
-`translations/en.php` and `translations/tr.php` ship complete. For another language, use
+All 8 interface translations (en, de, es, fr, it, nl, pl, tr) ship complete; the mail templates are English and Turkish only. For another language, use
 **International → Translations → Module translations**.
 
 ---
