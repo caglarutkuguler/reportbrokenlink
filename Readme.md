@@ -1,5 +1,7 @@
 # Report an Issue — Customer Product Page Feedback
 
+**Version:** 4.1.1
+
 **reportbrokenlink** v4.0.0 — PrestaShop 1.7 → 9
 
 Your customers find your broken pages before you do. This module gives them a discreet way to
