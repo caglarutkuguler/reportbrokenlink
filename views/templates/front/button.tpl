@@ -29,7 +29,7 @@
 
         <div class="rbl-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="rbl-title">
             <div class="rbl-modal__header">
-                <h2 class="rbl-modal__title" id="rbl-title">{l s='Report an issue' mod='reportbrokenlink'}</h2>
+                <p class="rbl-modal__title" id="rbl-title">{l s='Report an issue' mod='reportbrokenlink'}</p>
                 <button type="button" class="rbl-modal__close" data-rbl-dismiss
                         aria-label="{l s='Close' mod='reportbrokenlink'}">&times;</button>
             </div>
