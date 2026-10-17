@@ -4,6 +4,16 @@ All notable changes to **reportbrokenlink** are documented here.
 
 ---
 
+## 4.1.2
+
+### Security
+
+- **Security hardening: back-office actions.** Settings, report updates, bulk actions, and CSV
+  export now accept only HTTP POST. A GET with the same parameter names is ignored. List filters
+  and confirmation flashes after save are unchanged.
+- **Security hardening: reCAPTCHA verification.** The siteverify call sends the secret key in
+  the POST body instead of the URL query string.
+
 ## 4.1.1
 
 ### Fixed
