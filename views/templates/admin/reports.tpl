@@ -122,9 +122,21 @@ h3 .material-icons.mv-ico,
 
     {if $rbl_total > 0}
         <div class="rbl-toolbar">
-            <a class="btn btn-default" href="{$rbl_export_url|escape:'html':'UTF-8'}">
-                <i class="material-icons mv-ico">cloud_download</i> {l s='Export to CSV' mod='reportbrokenlink'}
-            </a>
+            <form method="post" action="{$rbl_configure_url|escape:'html':'UTF-8'}" class="rbl-toolbar__export">
+                <input type="hidden" name="token" value="{$rbl_admin_token|escape:'html':'UTF-8'}">
+                {if $rbl_filters.status}<input type="hidden" name="rbl_status" value="{$rbl_filters.status|escape:'html':'UTF-8'}">{/if}
+                {if $rbl_filters.report_type}<input type="hidden" name="rbl_type" value="{$rbl_filters.report_type|escape:'html':'UTF-8'}">{/if}
+                {if $rbl_filters.id_product}<input type="hidden" name="rbl_product" value="{$rbl_filters.id_product|intval}">{/if}
+                {if $rbl_filters.id_category}<input type="hidden" name="rbl_category" value="{$rbl_filters.id_category|intval}">{/if}
+                {if $rbl_filters.date_from}<input type="hidden" name="rbl_from" value="{$rbl_filters.date_from|escape:'html':'UTF-8'}">{/if}
+                {if $rbl_filters.date_to}<input type="hidden" name="rbl_to" value="{$rbl_filters.date_to|escape:'html':'UTF-8'}">{/if}
+                {if $rbl_filters.search}<input type="hidden" name="rbl_search" value="{$rbl_filters.search|escape:'html':'UTF-8'}">{/if}
+                {if $rbl_order_by}<input type="hidden" name="rbl_order_by" value="{$rbl_order_by|escape:'html':'UTF-8'}">{/if}
+                {if $rbl_order_way}<input type="hidden" name="rbl_order_way" value="{$rbl_order_way|escape:'html':'UTF-8'}">{/if}
+                <button type="submit" name="rbl_export" value="1" class="btn btn-default">
+                    <i class="material-icons mv-ico">cloud_download</i> {l s='Export to CSV' mod='reportbrokenlink'}
+                </button>
+            </form>
             <span class="rbl-toolbar__hint text-muted">
                 {l s='The export contains exactly the reports matching the filters above.' mod='reportbrokenlink'}
             </span>

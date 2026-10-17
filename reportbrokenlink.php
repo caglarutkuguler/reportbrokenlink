@@ -38,7 +38,7 @@ class ReportBrokenLink extends Module
     {
         $this->name = 'reportbrokenlink';
         $this->tab = 'front_office_features';
-        $this->version = '4.1.1';
+        $this->version = '4.1.2';
         $this->author = 'MEG Venture';
         $this->need_instance = 0;
         $this->bootstrap = true;
@@ -304,13 +304,21 @@ class ReportBrokenLink extends Module
             return true;
         }
 
-        $raw = Tools::file_get_contents(
-            'https://www.google.com/recaptcha/api/siteverify?' . http_build_query(array(
-                'secret' => $secret,
-                'response' => (string) $response,
-                'remoteip' => (string) $ip,
-            ))
-        );
+        // POST the secret — never in the query string, which ends up in access logs.
+        $context = stream_context_create(array(
+            'http' => array(
+                'method' => 'POST',
+                'header' => "Content-Type: application/x-www-form-urlencoded\r\n",
+                'content' => http_build_query(array(
+                    'secret' => $secret,
+                    'response' => (string) $response,
+                    'remoteip' => (string) $ip,
+                )),
+                'timeout' => 5,
+            ),
+        ));
+
+        $raw = @file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, $context);
 
         if (!$raw) {
             // Google unreachable. Do not punish the visitor for our outbound network.
@@ -794,19 +802,25 @@ class ReportBrokenLink extends Module
             $this->context->link->getAdminLink('AdminModules', false) . '&configure=' . $this->name
         );
 
-        if (Tools::isSubmit('rbl_export')) {
+        // Tools::isSubmit() also matches GET query params. State-changing actions must
+        // be POST so a logged-in employee hitting a crafted URL (or a prefetch) cannot
+        // export PII, bulk-update reports, or overwrite settings.
+        $isPost = isset($_SERVER['REQUEST_METHOD'])
+            && strtoupper((string) $_SERVER['REQUEST_METHOD']) === 'POST';
+
+        if ($isPost && Tools::isSubmit('rbl_export')) {
             // Exits after streaming the file; only returns if it could not start.
             $this->processExport();
         }
 
-        if (Tools::isSubmit('submitReportbrokenlinkSettings')) {
+        if ($isPost && Tools::isSubmit('submitReportbrokenlinkSettings')) {
             $this->processSettingsForm();
-        } elseif (Tools::isSubmit('rbl_save_report')) {
+        } elseif ($isPost && Tools::isSubmit('rbl_save_report')) {
             $this->processReportUpdate();
-        } elseif (Tools::isSubmit('rbl_bulk_resolve')
+        } elseif ($isPost && (Tools::isSubmit('rbl_bulk_resolve')
             || Tools::isSubmit('rbl_bulk_progress')
             || Tools::isSubmit('rbl_bulk_spam')
-            || Tools::isSubmit('rbl_bulk_delete')) {
+            || Tools::isSubmit('rbl_bulk_delete'))) {
             $this->processBulkAction();
         }
 
@@ -1006,7 +1020,6 @@ class ReportBrokenLink extends Module
             'rbl_pages' => $pages,
             'rbl_configure_url' => $this->getConfigureUrl(),
             'rbl_filter_query' => $this->getFilterQueryString(),
-            'rbl_export_url' => $this->getConfigureUrl('&rbl_export=1' . $this->getFilterQueryString()),
             'rbl_filters' => $filters,
             'rbl_order_by' => $orderBy,
             'rbl_order_way' => $orderWay,
