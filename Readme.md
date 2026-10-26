@@ -1,6 +1,6 @@
 # Report an Issue — Customer Product Page Feedback
 
-**Version:** 4.1.1
+**Version:** 4.1.2
 
 **reportbrokenlink** v4.0.0 — PrestaShop 1.7 → 9
 
