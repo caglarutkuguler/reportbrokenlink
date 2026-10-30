@@ -831,7 +831,7 @@ class ReportBrokenLink extends Module
             . $this->renderIntroduction()
             . $this->renderReportList()
             . $this->renderSettingsForm()
-            . MegVentureAdsWidget::render('https://megventure.com/index.php?fc=module&module=virtualproductcombination&controller=adswidget');
+            . MegVentureAdsWidgetV2::render('https://megventure.com/index.php?fc=module&module=virtualproductcombination&controller=adswidget');
     }
 
     /**
