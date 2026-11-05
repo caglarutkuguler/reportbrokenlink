@@ -4,6 +4,12 @@ All notable changes to **reportbrokenlink** are documented here.
 
 ---
 
+## 4.1.3
+
+### Added
+
+- The configuration page links to the free MEG Venture Updates module, which installs updates for this module in one click. The line is hidden once that module is installed.
+
 ## 4.1.2
 
 ### Security

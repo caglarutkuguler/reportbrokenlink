@@ -43,7 +43,7 @@ $front = file_get_contents($root . '/controllers/front/report.php');
 ok(strpos($front, 'REQUEST_METHOD') !== false, 'FO POST gate');
 
 echo "\n5) Version + upgrade stub\n";
-ok(strpos($main, "version = '4.1.2'") !== false, 'module version 4.1.2');
+ok(strpos($main, "version = '4.1.3'") !== false, 'module version 4.1.3');
 ok(is_file($root . '/upgrade/upgrade-4.1.2.php'), 'upgrade-4.1.2.php present');
 
 echo "\n" . ($fail === 0 ? "OK - all passed\n" : "$fail FAILED\n");

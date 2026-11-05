@@ -347,3 +347,5 @@ $_MODULE['<{reportbrokenlink}prestashop>megventurereviewnudge_c980491d2b999421c4
 $_MODULE['<{reportbrokenlink}prestashop>megventurereviewnudge_6ecbf3c5ab7a06f08c526f02bce2b2d6'] = 'Dejar una reseña';
 $_MODULE['<{reportbrokenlink}prestashop>megventurereviewnudge_8ad4303b83a62fb6ca3b025bad5bc114'] = 'No, gracias';
 $_MODULE['<{reportbrokenlink}prestashop>megventurereviewnudge_4d170dcb0d03a0efa011c9193219bb68'] = 'De acuerdo, no volveremos a preguntar.';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_2831420e2c343c00fc80bb8b4634e559'] = 'Reciba las actualizaciones de este módulo con un clic: instale el módulo gratuito MEG Venture Updates.';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_9ffdb95250e26c7a6b468126ac7c75b0'] = 'Cómo funciona';
