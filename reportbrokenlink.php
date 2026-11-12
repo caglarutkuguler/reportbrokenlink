@@ -38,7 +38,7 @@ class ReportBrokenLink extends Module
     {
         $this->name = 'reportbrokenlink';
         $this->tab = 'front_office_features';
-        $this->version = '4.1.3';
+        $this->version = '4.2.0';
         $this->author = 'MEG Venture';
         $this->need_instance = 0;
         $this->bootstrap = true;
@@ -599,7 +599,7 @@ class ReportBrokenLink extends Module
             return '';
         }
 
-        $idShop = (int) $this->context->shop->id;
+        $idShop = $this->getContextShopIds();
         $counts = ReportBrokenLinkRepository::countByStatus($idShop);
         $open = $counts['open'] + $counts['in_progress'];
 
@@ -715,6 +715,9 @@ class ReportBrokenLink extends Module
 
         $response = trim((string) $report['admin_response']);
 
+        // The mail is about the shop the report was filed on, not the shop being browsed.
+        $idShop = !empty($report['id_shop']) ? (int) $report['id_shop'] : (int) $this->context->shop->id;
+
         return (bool) Mail::Send(
             (int) $this->context->language->id,
             'report_resolved',
@@ -724,7 +727,7 @@ class ReportBrokenLink extends Module
                 '{product}' => $this->escapeForMail($productName),
                 '{message}' => $this->escapeForMail($report['message']),
                 '{admin_response}' => $this->escapeForMail($response !== '' ? $response : $this->l('We have looked into it and the page should be correct now.')),
-                '{shop_name}' => $this->escapeForMail(Configuration::get('PS_SHOP_NAME')),
+                '{shop_name}' => $this->escapeForMail(Configuration::get('PS_SHOP_NAME', null, null, $idShop)),
             ),
             $report['customer_email'],
             null,
@@ -734,7 +737,7 @@ class ReportBrokenLink extends Module
             null,
             _PS_MODULE_DIR_ . $this->name . '/mails/',
             false,
-            (int) $this->context->shop->id
+            $idShop
         );
     }
 
@@ -820,10 +823,15 @@ class ReportBrokenLink extends Module
 
         $this->html = '';
 
-        Configuration::updateValue(
-            'REPORTBROKENLINK_ADMIN_LINK',
-            $this->context->link->getAdminLink('AdminModules', false) . '&configure=' . $this->name
-        );
+        // Multistore: the link is built from the shop being browsed, so it is only stored for
+        // that shop. In the All shops / group context the browsed shop is merely the default
+        // one, and saving its link there would become the fallback for every other shop.
+        if (!Shop::isFeatureActive() || Shop::getContext() === Shop::CONTEXT_SHOP) {
+            Configuration::updateValue(
+                'REPORTBROKENLINK_ADMIN_LINK',
+                $this->context->link->getAdminLink('AdminModules', false) . '&configure=' . $this->name
+            );
+        }
 
         // Tools::isSubmit() also matches GET query params. State-changing actions must
         // be POST so a logged-in employee hitting a crafted URL (or a prefetch) cannot
@@ -850,11 +858,46 @@ class ReportBrokenLink extends Module
         $this->addFlashMessage();
 
         return $nudge
+            . $this->renderShopContextNotice()
             . $this->html
             . $this->renderIntroduction()
             . $this->renderReportList()
             . $this->renderSettingsForm()
             . $this->renderMvuNotice() . MegVentureAdsWidgetV2::render('https://megventure.com/index.php?fc=module&module=virtualproductcombination&controller=adswidget');
+    }
+
+    /**
+     * Shop ids the back-office lists, counts and row actions cover: the shops of the current
+     * shop context when multistore is active, otherwise just the shop being browsed.
+     *
+     * @return int[]
+     */
+    private function getContextShopIds()
+    {
+        if (Shop::isFeatureActive()) {
+            $ids = array_values(array_unique(array_map('intval', (array) Shop::getContextListShopID())));
+            if ($ids) {
+                return $ids;
+            }
+        }
+
+        return array((int) $this->context->shop->id);
+    }
+
+    /**
+     * Warning shown in the All shops / shop group context (multistore only).
+     *
+     * @return string
+     */
+    private function renderShopContextNotice()
+    {
+        if (!Shop::isFeatureActive() || Shop::getContext() === Shop::CONTEXT_SHOP) {
+            return '';
+        }
+
+        return '<div class="alert alert-warning">'
+            . $this->l('You are in the All shops or shop group context. Settings saved here become the default for every shop that has no value of its own. The report list below shows the reports of every shop in this context, each with its shop; status changes, deletions and exports apply only to those reports. Select a single shop in the shop selector to work on that shop only.')
+            . '</div>';
     }
 
     /**
@@ -897,7 +940,7 @@ class ReportBrokenLink extends Module
      */
     private function renderIntroduction()
     {
-        $idShop = (int) $this->context->shop->id;
+        $idShop = $this->getContextShopIds();
         $idLang = (int) $this->context->language->id;
         $counts = ReportBrokenLinkRepository::countByStatus($idShop);
 
@@ -971,7 +1014,7 @@ class ReportBrokenLink extends Module
     private function getListFilters()
     {
         return array(
-            'id_shop' => (int) $this->context->shop->id,
+            'id_shop' => $this->getContextShopIds(),
             'status' => (string) Tools::getValue('rbl_status', ''),
             'report_type' => (string) Tools::getValue('rbl_type', ''),
             'id_product' => (int) Tools::getValue('rbl_product', 0),
@@ -1050,6 +1093,7 @@ class ReportBrokenLink extends Module
             'rbl_status_labels' => $this->getStatusLabels(),
             'rbl_categories' => $this->getCategoryOptions($idLang),
             'rbl_has_filters' => $this->hasActiveFilters($filters),
+            'rbl_multistore' => (bool) Shop::isFeatureActive(),
             'rbl_notify_enabled' => (bool) Configuration::get('REPORTBROKENLINK_NOTIFY_CUSTOMER'),
             'rbl_this_path' => $this->_path,
             'rbl_admin_token' => Tools::getAdminTokenLite('AdminModules'),
@@ -1084,8 +1128,19 @@ class ReportBrokenLink extends Module
     private function decorateReports(array $reports)
     {
         $typeLabels = $this->getTypeLabels();
+        $multistore = Shop::isFeatureActive();
+        $shopNames = array();
+        if ($multistore) {
+            foreach ((array) Shop::getShops(false) as $shop) {
+                $shopNames[(int) $shop['id_shop']] = (string) $shop['name'];
+            }
+        }
 
         foreach ($reports as &$report) {
+            $report['shop_name'] = isset($shopNames[(int) $report['id_shop']])
+                ? $shopNames[(int) $report['id_shop']]
+                : (string) (int) $report['id_shop'];
+
             $report['type_label'] = isset($typeLabels[$report['report_type']])
                 ? $typeLabels[$report['report_type']]
                 : $report['report_type'];
@@ -1097,7 +1152,9 @@ class ReportBrokenLink extends Module
 
             $report['front_link'] = $report['product_deleted']
                 ? ''
-                : $this->context->link->getProductLink((int) $report['id_product']);
+                : ($multistore
+                    ? $this->context->link->getProductLink((int) $report['id_product'], null, null, null, null, (int) $report['id_shop'])
+                    : $this->context->link->getProductLink((int) $report['id_product']));
 
             $report['edit_link'] = $report['product_deleted']
                 ? ''
@@ -1165,14 +1222,15 @@ class ReportBrokenLink extends Module
      */
     private function processReportUpdate()
     {
-        $idShop = (int) $this->context->shop->id;
+        $idShop = $this->getContextShopIds();
 
         // The list is one big form, so the row being saved is identified by the value of the
         // submit button that was clicked, and its fields are suffixed with the same id. Nesting
         // a per-row <form> inside the bulk-action form instead would be invalid HTML.
         $idReport = (int) Tools::getValue('rbl_save_report');
 
-        // Scoped by shop, so a crafted id cannot reach another shop's reports.
+        // Scoped to the shops of the current context, so a crafted id cannot reach the
+        // reports of a shop outside it.
         $report = ReportBrokenLinkRepository::getById($idReport, $idShop);
         if (!$report) {
             $this->html .= $this->displayError($this->l('That report no longer exists.'));
@@ -1217,7 +1275,7 @@ class ReportBrokenLink extends Module
      */
     private function processBulkAction()
     {
-        $idShop = (int) $this->context->shop->id;
+        $idShop = $this->getContextShopIds();
         $ids = array_map('intval', (array) Tools::getValue('rbl_ids'));
         $ids = array_values(array_filter($ids));
 
@@ -1288,6 +1346,13 @@ class ReportBrokenLink extends Module
 
         $typeLabels = $this->getTypeLabels();
         $statusLabels = $this->getStatusLabels();
+        $multistore = Shop::isFeatureActive();
+        $shopNames = array();
+        if ($multistore) {
+            foreach ((array) Shop::getShops(false) as $shop) {
+                $shopNames[(int) $shop['id_shop']] = (string) $shop['name'];
+            }
+        }
 
         while (ob_get_level()) {
             ob_end_clean();
@@ -1300,7 +1365,7 @@ class ReportBrokenLink extends Module
         $output = fopen('php://output', 'w');
         fwrite($output, "\xEF\xBB\xBF"); // UTF-8 BOM so Excel detects the encoding
 
-        fputcsv($output, array(
+        $header = array(
             'id_report',
             'created_at',
             'updated_at',
@@ -1313,10 +1378,14 @@ class ReportBrokenLink extends Module
             'id_customer',
             'message',
             'admin_response',
-        ), ';');
+        );
+        if ($multistore) {
+            $header[] = 'shop';
+        }
+        fputcsv($output, $header, ';');
 
         foreach (array_slice($rows, 0, self::EXPORT_MAX_ROWS) as $row) {
-            fputcsv($output, array(
+            $line = array(
                 (int) $row['id_report'],
                 $row['created_at'],
                 $row['updated_at'],
@@ -1329,7 +1398,11 @@ class ReportBrokenLink extends Module
                 (int) $row['id_customer'],
                 $this->csvCell($row['message']),
                 $this->csvCell($row['admin_response']),
-            ), ';');
+            );
+            if ($multistore) {
+                $line[] = $this->csvCell(isset($shopNames[(int) $row['id_shop']]) ? $shopNames[(int) $row['id_shop']] : (int) $row['id_shop']);
+            }
+            fputcsv($output, $line, ';');
         }
 
         fclose($output);

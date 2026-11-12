@@ -347,3 +347,5 @@ $_MODULE['<{reportbrokenlink}prestashop>megventurereviewnudge_8ad4303b83a62fb6ca
 $_MODULE['<{reportbrokenlink}prestashop>megventurereviewnudge_4d170dcb0d03a0efa011c9193219bb68'] = 'Okay, we will not ask again.';
 $_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_2831420e2c343c00fc80bb8b4634e559'] = 'Get updates for this module in one click: install the free MEG Venture Updates module.';
 $_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_9ffdb95250e26c7a6b468126ac7c75b0'] = 'How it works';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_fe9b09331c87f4630ca1ae682397b70e'] = 'You are in the All shops or shop group context. Settings saved here become the default for every shop that has no value of its own. The report list below shows the reports of every shop in this context, each with its shop; status changes, deletions and exports apply only to those reports. Select a single shop in the shop selector to work on that shop only.';
+$_MODULE['<{reportbrokenlink}prestashop>reports_9f82518d468b9fee614fcc92f76bb163'] = 'Shop';

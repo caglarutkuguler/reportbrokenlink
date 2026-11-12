@@ -356,3 +356,5 @@ $_MODULE['<{reportbrokenlink}prestashop>ff71ed471070276df69182f5bf03d9fd'] = 'So
 $_MODULE['<{reportbrokenlink}prestashop>7a48423600a8de29f11cbb04c8e23fb5'] = 'Dejar este campo vacío';
 $_MODULE['<{reportbrokenlink}prestashop>ea4788705e6873b424c65e91c2846b19'] = 'Cancelar';
 $_MODULE['<{reportbrokenlink}prestashop>98892a7db1a3904050e1fb7fd1e5e008'] = 'Enviar informe';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_fe9b09331c87f4630ca1ae682397b70e'] = 'Está en el contexto Todas las tiendas o grupo de tiendas. Los ajustes guardados aquí pasan a ser los predeterminados de cada tienda que no tenga valor propio. La lista de abajo muestra los avisos de todas las tiendas de este contexto, cada uno con su tienda; los cambios de estado, eliminaciones y exportaciones solo se aplican a esos avisos. Seleccione una sola tienda en el selector de tiendas para trabajar solo en ella.';
+$_MODULE['<{reportbrokenlink}prestashop>reports_9f82518d468b9fee614fcc92f76bb163'] = 'Tienda';

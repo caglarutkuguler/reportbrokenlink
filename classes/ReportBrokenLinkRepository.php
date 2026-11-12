@@ -80,7 +80,7 @@ class ReportBrokenLinkRepository
      * submitted it, not something the back office is allowed to rewrite.
      *
      * @param int $idReport
-     * @param int $idShop scoping the update so one shop cannot edit another shop's reports
+     * @param int|int[] $idShop shop(s) scoping the update so one shop cannot edit another shop's reports
      * @param string $status already normalised against STATUSES
      * @param string $adminResponse already sanitised
      *
@@ -93,7 +93,7 @@ class ReportBrokenLinkRepository
              SET `status` = "' . pSQL($status) . '",
                  `admin_response` = "' . pSQL($adminResponse) . '",
                  `updated_at` = "' . pSQL(date('Y-m-d H:i:s')) . '"
-             WHERE `id_report` = ' . (int) $idReport . ' AND `id_shop` = ' . (int) $idShop
+             WHERE `id_report` = ' . (int) $idReport . ' AND ' . self::shopCondition($idShop, '`id_shop`')
         );
     }
 
@@ -114,7 +114,7 @@ class ReportBrokenLinkRepository
         return (bool) Db::getInstance()->execute(
             'UPDATE `' . _DB_PREFIX_ . self::TABLE . '`
              SET `status` = "' . pSQL($status) . '", `updated_at` = "' . pSQL(date('Y-m-d H:i:s')) . '"
-             WHERE `id_shop` = ' . (int) $idShop . ' AND `id_report` IN (' . implode(',', $ids) . ')'
+             WHERE ' . self::shopCondition($idShop, '`id_shop`') . ' AND `id_report` IN (' . implode(',', $ids) . ')'
         );
     }
 
@@ -133,7 +133,7 @@ class ReportBrokenLinkRepository
 
         return (bool) Db::getInstance()->execute(
             'DELETE FROM `' . _DB_PREFIX_ . self::TABLE . '`
-             WHERE `id_shop` = ' . (int) $idShop . ' AND `id_report` IN (' . implode(',', $ids) . ')'
+             WHERE ' . self::shopCondition($idShop, '`id_shop`') . ' AND `id_report` IN (' . implode(',', $ids) . ')'
         );
     }
 
@@ -166,7 +166,7 @@ class ReportBrokenLinkRepository
     {
         return Db::getInstance()->getRow(
             'SELECT * FROM `' . _DB_PREFIX_ . self::TABLE . '`
-             WHERE `id_report` = ' . (int) $idReport . ' AND `id_shop` = ' . (int) $idShop
+             WHERE `id_report` = ' . (int) $idReport . ' AND ' . self::shopCondition($idShop, '`id_shop`')
         );
     }
 
@@ -242,7 +242,7 @@ class ReportBrokenLinkRepository
 
         $rows = Db::getInstance()->executeS(
             'SELECT `status`, COUNT(*) AS total FROM `' . _DB_PREFIX_ . self::TABLE . '`
-             WHERE `id_shop` = ' . (int) $idShop . '
+             WHERE ' . self::shopCondition($idShop, '`id_shop`') . '
              GROUP BY `status`'
         );
 
@@ -265,7 +265,7 @@ class ReportBrokenLinkRepository
     {
         return (int) Db::getInstance()->getValue(
             'SELECT COUNT(*) FROM `' . _DB_PREFIX_ . self::TABLE . '`
-             WHERE `id_shop` = ' . (int) $idShop . '
+             WHERE ' . self::shopCondition($idShop, '`id_shop`') . '
              AND `created_at` > DATE_SUB(NOW(), INTERVAL ' . (int) $days . ' DAY)'
         );
     }
@@ -288,7 +288,7 @@ class ReportBrokenLinkRepository
                  ON pl.`id_product` = r.`id_product`
                  AND pl.`id_lang` = ' . (int) $idLang . '
                  AND pl.`id_shop` = r.`id_shop`
-             WHERE r.`id_shop` = ' . (int) $idShop . '
+             WHERE ' . self::shopCondition($idShop, 'r.`id_shop`') . '
              AND r.`status` NOT IN ("spam", "duplicate")
              GROUP BY r.`id_product`, pl.`name`
              ORDER BY total DESC
@@ -383,7 +383,7 @@ class ReportBrokenLinkRepository
      */
     private static function buildWhere(array $filters)
     {
-        $where = array('r.`id_shop` = ' . (isset($filters['id_shop']) ? (int) $filters['id_shop'] : 0));
+        $where = array(self::shopCondition(isset($filters['id_shop']) ? $filters['id_shop'] : 0, 'r.`id_shop`'));
 
         if (!empty($filters['status']) && in_array($filters['status'], self::STATUSES, true)) {
             $where[] = 'r.`status` = "' . pSQL($filters['status']) . '"';
@@ -420,6 +420,37 @@ class ReportBrokenLinkRepository
         }
 
         return implode(' AND ', $where);
+    }
+
+    /**
+     * SQL condition limiting a query to one shop or to a list of shops. A single id gives
+     * exactly the `= N` the module has always used; nothing valid gives `= 0`, which matches
+     * no row.
+     *
+     * @param int|int[] $idShops
+     * @param string $column trusted column expression, never user input
+     *
+     * @return string
+     */
+    public static function shopCondition($idShops, $column)
+    {
+        $ids = array();
+        foreach ((array) $idShops as $id) {
+            $id = (int) $id;
+            if ($id > 0) {
+                $ids[$id] = $id;
+            }
+        }
+        $ids = array_values($ids);
+
+        if (!$ids) {
+            return $column . ' = 0';
+        }
+        if (count($ids) === 1) {
+            return $column . ' = ' . $ids[0];
+        }
+
+        return $column . ' IN (' . implode(',', $ids) . ')';
     }
 
     /**

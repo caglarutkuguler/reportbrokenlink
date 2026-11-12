@@ -356,3 +356,5 @@ $_MODULE['<{reportbrokenlink}prestashop>ff71ed471070276df69182f5bf03d9fd'] = 'Al
 $_MODULE['<{reportbrokenlink}prestashop>7a48423600a8de29f11cbb04c8e23fb5'] = 'Laat dit veld leeg';
 $_MODULE['<{reportbrokenlink}prestashop>ea4788705e6873b424c65e91c2846b19'] = 'Annuleren';
 $_MODULE['<{reportbrokenlink}prestashop>98892a7db1a3904050e1fb7fd1e5e008'] = 'Melding verzenden';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_fe9b09331c87f4630ca1ae682397b70e'] = 'U bevindt zich in de context Alle winkels of winkelgroep. Hier opgeslagen instellingen worden de standaard voor elke winkel zonder eigen waarde. De lijst hieronder toont de meldingen van alle winkels in deze context, elk met zijn winkel; statuswijzigingen, verwijderingen en exports gelden alleen voor die meldingen. Kies één winkel in de winkelkiezer om alleen in die winkel te werken.';
+$_MODULE['<{reportbrokenlink}prestashop>reports_9f82518d468b9fee614fcc92f76bb163'] = 'Winkel';

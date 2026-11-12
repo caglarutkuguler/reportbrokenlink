@@ -175,6 +175,7 @@ h3 .material-icons.mv-ico,
                     <th>{l s='Issue' mod='reportbrokenlink'}</th>
                     <th>{l s='Reported by' mod='reportbrokenlink'}</th>
                     <th>{l s='Date' mod='reportbrokenlink'}</th>
+                    {if $rbl_multistore}<th>{l s='Shop' mod='reportbrokenlink'}</th>{/if}
                     <th>{l s='Status' mod='reportbrokenlink'}</th>
                     <th class="rbl-col-actions"></th>
                 </tr>
@@ -214,6 +215,7 @@ h3 .material-icons.mv-ico,
                             {/if}
                         </td>
                         <td class="rbl-date">{$report.created_display|escape:'html':'UTF-8'}</td>
+                        {if $rbl_multistore}<td>{$report.shop_name|escape:'html':'UTF-8'}</td>{/if}
                         <td>
                             <span class="rbl-status rbl-status--{$report.status|escape:'html':'UTF-8'}">
                                 {$rbl_status_labels[$report.status]|escape:'html':'UTF-8'}
@@ -229,7 +231,7 @@ h3 .material-icons.mv-ico,
                     </tr>
 
                     <tr class="rbl-detail" id="rbl-detail-{$report.id_report|intval}" hidden>
-                        <td colspan="7">
+                        <td colspan="{if $rbl_multistore}8{else}7{/if}">
                             <div class="rbl-detail__grid">
                                 <div class="rbl-detail__main">
                                     <h4>{l s='What the visitor wrote' mod='reportbrokenlink'}</h4>

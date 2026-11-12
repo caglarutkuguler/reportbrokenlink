@@ -356,3 +356,5 @@ $_MODULE['<{reportbrokenlink}prestashop>ff71ed471070276df69182f5bf03d9fd'] = 'Ut
 $_MODULE['<{reportbrokenlink}prestashop>7a48423600a8de29f11cbb04c8e23fb5'] = 'Laisser ce champ vide';
 $_MODULE['<{reportbrokenlink}prestashop>ea4788705e6873b424c65e91c2846b19'] = 'Annuler';
 $_MODULE['<{reportbrokenlink}prestashop>98892a7db1a3904050e1fb7fd1e5e008'] = 'Envoyer le signalement';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_fe9b09331c87f4630ca1ae682397b70e'] = 'Vous êtes dans le contexte Toutes les boutiques ou groupe de boutiques. Les réglages enregistrés ici deviennent la valeur par défaut de chaque boutique sans valeur propre. La liste ci-dessous affiche les signalements de toutes les boutiques de ce contexte, chacun avec sa boutique ; les changements de statut, suppressions et exports ne concernent que ces signalements. Choisissez une seule boutique dans le sélecteur de boutiques pour travailler uniquement sur celle-ci.';
+$_MODULE['<{reportbrokenlink}prestashop>reports_9f82518d468b9fee614fcc92f76bb163'] = 'Boutique';

@@ -356,3 +356,5 @@ $_MODULE['<{reportbrokenlink}prestashop>ff71ed471070276df69182f5bf03d9fd'] = 'U�
 $_MODULE['<{reportbrokenlink}prestashop>7a48423600a8de29f11cbb04c8e23fb5'] = 'Pozostaw to pole puste';
 $_MODULE['<{reportbrokenlink}prestashop>ea4788705e6873b424c65e91c2846b19'] = 'Anuluj';
 $_MODULE['<{reportbrokenlink}prestashop>98892a7db1a3904050e1fb7fd1e5e008'] = 'Wyślij zgłoszenie';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_fe9b09331c87f4630ca1ae682397b70e'] = 'Jesteś w kontekście Wszystkie sklepy lub grupa sklepów. Ustawienia zapisane tutaj stają się domyślne dla każdego sklepu bez własnej wartości. Lista poniżej pokazuje zgłoszenia wszystkich sklepów w tym kontekście, każde z nazwą sklepu; zmiany statusu, usunięcia i eksporty dotyczą tylko tych zgłoszeń. Wybierz jeden sklep w selektorze sklepów, aby pracować tylko w nim.';
+$_MODULE['<{reportbrokenlink}prestashop>reports_9f82518d468b9fee614fcc92f76bb163'] = 'Sklep';

@@ -356,3 +356,5 @@ $_MODULE['<{reportbrokenlink}prestashop>ff71ed471070276df69182f5bf03d9fd'] = 'Us
 $_MODULE['<{reportbrokenlink}prestashop>7a48423600a8de29f11cbb04c8e23fb5'] = 'Lascia vuoto questo campo';
 $_MODULE['<{reportbrokenlink}prestashop>ea4788705e6873b424c65e91c2846b19'] = 'Annulla';
 $_MODULE['<{reportbrokenlink}prestashop>98892a7db1a3904050e1fb7fd1e5e008'] = 'Invia segnalazione';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_fe9b09331c87f4630ca1ae682397b70e'] = 'Siete nel contesto Tutti i negozi o gruppo di negozi. Le impostazioni salvate qui diventano predefinite per ogni negozio senza un valore proprio. La lista sottostante mostra le segnalazioni di tutti i negozi di questo contesto, ciascuna con il proprio negozio; modifiche di stato, eliminazioni ed esportazioni si applicano solo a tali segnalazioni. Selezionate un solo negozio nel selettore dei negozi per lavorare solo su quello.';
+$_MODULE['<{reportbrokenlink}prestashop>reports_9f82518d468b9fee614fcc92f76bb163'] = 'Negozio';

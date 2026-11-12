@@ -4,6 +4,18 @@ All notable changes to **reportbrokenlink** are documented here.
 
 ---
 
+## 4.2.0
+
+### Added
+
+- Multistore support. In the back office the report list, the status counters, the Dashboard widget and the CSV export now cover the shops of the current shop context (a single shop, a shop group or All shops), with a Shop column when multistore is active. Before, only the default shop's reports were visible in the All shops context. Status changes, saving a report, bulk actions and deleting only work on reports of those shops.
+- The "issue resolved" e-mail to a reporter now uses the name and sender settings of the shop the report was filed on, and the product link in the list points to that shop.
+- A notice on the configuration page explains the All shops / shop group context.
+
+### Fixed
+
+- Opening the configuration page in the All shops or shop group context no longer stores the default shop's back-office link as the fallback for every shop; the link is stored only in a single shop context.
+
 ## 4.1.3
 
 ### Added

@@ -356,3 +356,5 @@ $_MODULE['<{reportbrokenlink}prestashop>ff71ed471070276df69182f5bf03d9fd'] = 'Wi
 $_MODULE['<{reportbrokenlink}prestashop>7a48423600a8de29f11cbb04c8e23fb5'] = 'Dieses Feld leer lassen';
 $_MODULE['<{reportbrokenlink}prestashop>ea4788705e6873b424c65e91c2846b19'] = 'Abbrechen';
 $_MODULE['<{reportbrokenlink}prestashop>98892a7db1a3904050e1fb7fd1e5e008'] = 'Meldung senden';
+$_MODULE['<{reportbrokenlink}prestashop>reportbrokenlink_fe9b09331c87f4630ca1ae682397b70e'] = 'Sie befinden sich im Kontext Alle Shops oder Shop-Gruppe. Hier gespeicherte Einstellungen werden zum Standard für jeden Shop ohne eigenen Wert. Die Meldungsliste unten zeigt die Meldungen aller Shops in diesem Kontext, jeweils mit dem Shop; Statusänderungen, Löschungen und Exporte gelten nur für diese Meldungen. Wählen Sie im Shop-Auswahlfeld einen einzelnen Shop, um nur in diesem Shop zu arbeiten.';
+$_MODULE['<{reportbrokenlink}prestashop>reports_9f82518d468b9fee614fcc92f76bb163'] = 'Shop';

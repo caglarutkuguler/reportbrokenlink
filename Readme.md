@@ -1,6 +1,6 @@
 # Report an Issue — Customer Product Page Feedback
 
-**Version:** 4.1.3
+**Version:** 4.2.0
 
 **reportbrokenlink** v4.0.0 — PrestaShop 1.7 → 9
 
@@ -125,6 +125,22 @@ product editor), the reporter, timestamps, a status selector and a notes/reply f
 
 A widget on the Dashboard home shows the count of waiting reports — and hides itself entirely
 when there are none.
+
+## Multistore
+
+- Each report is stored with the shop it was filed on.
+- The report list, the counters, the Dashboard widget and the CSV export cover the shops of the
+  current shop context (one shop, a shop group or All shops). A **Shop** column (and a `shop`
+  CSV column) appears when multistore is active. Status changes, saving a report, bulk actions
+  and deleting only work on reports of those shops.
+- The "issue resolved" e-mail to a reporter is sent with the name and sender settings of the
+  shop the report was filed on.
+- Settings are normal PrestaShop settings: saved in All shops they become the default for shops
+  without their own value. The cached back-office link used in notification e-mails is stored
+  only when you open the page in a single shop context.
+- Reports of a product are deleted with the product only when the product no longer exists in
+  any shop. The anti-spam counters count across all shops.
+- Single-shop installs behave as before.
 
 ---
 
