@@ -15,6 +15,7 @@ All notable changes to **reportbrokenlink** are documented here.
 ### Fixed
 
 - Opening the configuration page in the All shops or shop group context no longer stores the default shop's back-office link as the fallback for every shop; the link is stored only in a single shop context.
+- Multistore: a report filed on one shop no longer turns the same visitor's report of the same product on another shop into a quiet duplicate, which kept that shop's merchant from being alerted. The duplicate check looks at the shop the report is filed on; a single-shop install is unchanged.
 
 ## 4.1.3
 

@@ -348,10 +348,13 @@ class ReportBrokenLinkRepository
      * @param string $reportType
      * @param string $ipHash
      * @param string $email
+     * @param int $idShop shop the new report is filed on; 0 (default) = any shop. The front
+     *                    controller passes it only with multistore active, so a report filed on one
+     *                    shop never hides the same person's report on another shop from its merchant
      *
      * @return bool
      */
-    public static function hasRecentDuplicate($idProduct, $reportType, $ipHash, $email)
+    public static function hasRecentDuplicate($idProduct, $reportType, $ipHash, $email, $idShop = 0)
     {
         $identity = '`ip_hash` = "' . pSQL($ipHash) . '"';
         if ($email !== '') {
@@ -361,7 +364,8 @@ class ReportBrokenLinkRepository
         return (bool) Db::getInstance()->getValue(
             'SELECT COUNT(*) FROM `' . _DB_PREFIX_ . self::TABLE . '`
              WHERE `id_product` = ' . (int) $idProduct . '
-             AND `report_type` = "' . pSQL($reportType) . '"
+             AND `report_type` = "' . pSQL($reportType) . '"'
+             . ((int) $idShop > 0 ? ' AND ' . self::shopCondition((int) $idShop, '`id_shop`') : '') . '
              AND ' . $identity . '
              AND `created_at` > DATE_SUB(NOW(), INTERVAL 24 HOUR)'
         );

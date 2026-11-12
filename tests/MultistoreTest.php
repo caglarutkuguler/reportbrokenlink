@@ -58,12 +58,21 @@ foreach (array('updateReport', 'bulkUpdateStatus', 'bulkDelete', 'getById', 'cou
     $body = substr($repo, $start, $end === false ? strlen($repo) : $end - $start);
     ok(strpos($body, 'self::shopCondition($idShop,') !== false, "$fn takes the shop list");
 }
-foreach (array('countRecentByIpForProduct', 'countRecentByIp', 'hasRecentDuplicate') as $fn) {
+foreach (array('countRecentByIpForProduct', 'countRecentByIp') as $fn) {
     $start = strpos($repo, 'function ' . $fn);
     $end = strpos($repo, 'function ', $start + 10);
     $body = substr($repo, $start, $end === false ? strlen($repo) : $end - $start);
     ok(strpos($body, 'id_shop') === false, "$fn stays global (anti-spam)");
 }
+// Found on a real two-shop PS 9.1.4 lab: the same visitor reporting the same product on shop 1 and then on shop 2
+// had the shop 2 report filed as a quiet duplicate, so the shop 2 merchant was never alerted.
+$start = strpos($repo, 'function hasRecentDuplicate');
+$end = strpos($repo, 'function ', $start + 10);
+$dupBody = substr($repo, $start, $end === false ? strlen($repo) : $end - $start);
+ok(strpos($dupBody, '$idShop = 0') !== false && strpos($dupBody, 'self::shopCondition((int) $idShop, ' . chr(39) . '`id_shop`' . chr(39) . ')') !== false, 'hasRecentDuplicate filters by shop when given one');
+ok(strpos($dupBody, '(int) $idShop > 0') !== false, 'hasRecentDuplicate: shop 0 (single shop) adds no condition, query unchanged');
+$report = file_get_contents($root . '/controllers/front/report.php');
+ok(strpos($report, 'Shop::isFeatureActive() ? (int) $this->context->shop->id : 0') !== false, 'front controller scopes the duplicate check to the shop only with multistore on');
 ok(strpos($main, "'id_shop' => \$this->getContextShopIds()") !== false, 'list filters use the context shops');
 ok(substr_count($main, '$idShop = $this->getContextShopIds();') === 4, 'dashboard, intro, update and bulk action use the context shops');
 ok(strpos($main, '$idShop = (int) $this->context->shop->id;') === false, 'no admin path is left on the browsed shop id');

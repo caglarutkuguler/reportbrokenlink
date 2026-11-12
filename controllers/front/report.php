@@ -166,7 +166,7 @@ class ReportBrokenLinkReportModuleFrontController extends ModuleFrontController
         // reporter still gets a thank-you (as far as they are concerned it worked), but the
         // merchant is not alerted twice for one problem.
         $isDuplicate = Configuration::get('REPORTBROKENLINK_DEDUP')
-            && ReportBrokenLinkRepository::hasRecentDuplicate($idProduct, $type, $ipHash, $email);
+            && ReportBrokenLinkRepository::hasRecentDuplicate($idProduct, $type, $ipHash, $email, Shop::isFeatureActive() ? (int) $this->context->shop->id : 0);
 
         $report = array(
             'id_shop' => (int) $this->context->shop->id,
